@@ -1,14 +1,10 @@
-import json
-import random
-from pathlib import Path
-from typing import List, Dict, Any
-
 import numpy as np
 from overrides import overrides
 
-from nats_bench import create
-from archai.discrete_search.api import ArchaiModel, DiscreteSearchSpace, ModelEvaluator, SearchObjectives
-from archai.discrete_search.algos import RandomSearch
+from archai.discrete_search.api import (
+    ArchaiModel,
+    DiscreteSearchSpace,
+)
 
 
 class NASBenchDiscreteIndexSpace(DiscreteSearchSpace):
@@ -17,6 +13,7 @@ class NASBenchDiscreteIndexSpace(DiscreteSearchSpace):
     The actual model object is not needed because the evaluator will look up
     precomputed metrics by archid.
     """
+
     def __init__(self, n_archs: int, seed: int = 0):
         self.n_archs = int(n_archs)
         self.rng = np.random.default_rng(seed)
@@ -35,12 +32,15 @@ class NASBenchDiscreteIndexSpace(DiscreteSearchSpace):
     @overrides
     def save_arch(self, arch, file_path: str) -> None:
         pass
+
     @overrides
     def load_arch(self, file_path: str) -> None:
         pass
+
     @overrides
     def save_model_weights(self, model: ArchaiModel, file_path: str) -> None:
         pass
+
     @overrides
     def load_model_weights(self, model: ArchaiModel, file_path: str) -> None:
         pass
