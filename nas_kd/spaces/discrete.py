@@ -1,10 +1,16 @@
+from enum import StrEnum
+from typing import List
+
 import numpy as np
 from overrides import overrides
 
 from archai.discrete_search.api import (
     ArchaiModel,
     DiscreteSearchSpace,
+    EvolutionarySearchSpace,
 )
+from nas_kd.models.nats_model import NATSArchaiModel
+from nas_kd.constants.constants import NATSOperations, ops_to_arch_index
 
 
 class NASBenchDiscreteIndexSpace(DiscreteSearchSpace):
@@ -30,17 +36,17 @@ class NASBenchDiscreteIndexSpace(DiscreteSearchSpace):
         return ArchaiModel(arch=None, archid=str(idx), metadata={"idx": idx})
 
     @overrides
-    def save_arch(self, arch, file_path: str) -> None:
+    def save_arch(self, model: ArchaiModel, path: str):
         pass
 
     @overrides
-    def load_arch(self, file_path: str) -> None:
+    def load_arch(self, path: str):
         pass
 
     @overrides
-    def save_model_weights(self, model: ArchaiModel, file_path: str) -> None:
+    def save_model_weights(self, model: ArchaiModel, path: str):
         pass
 
     @overrides
-    def load_model_weights(self, model: ArchaiModel, file_path: str) -> None:
+    def load_model_weights(self, model: ArchaiModel, path: str):
         pass
